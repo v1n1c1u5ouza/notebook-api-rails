@@ -1,5 +1,5 @@
 class Contact < ApplicationRecord
-    belongs_to :kind
+    belongs_to :kind, optional: true
 
     def author
         "v1n1c1u5ouza"
