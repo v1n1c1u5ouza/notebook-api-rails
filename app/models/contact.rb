@@ -1,9 +1,21 @@
 class Contact < ApplicationRecord
     belongs_to :kind, optional: true
 
-    def author
-        "v1n1c1u5ouza"
+    # def birthdate_br
+        #   I18n.l(self.birthdate) unless self.birthdate.blank?
+    # end
+
+    def to_br
+        {
+          name: self.name,
+          email: self.email,
+          birthdate: (I18n.l(self.birthdate) unless self.birthdate.blank?)
+        }
     end
+
+    #def author
+     #   "v1n1c1u5ouza"
+    # end
 
     def kind_description
         self.kind.description
@@ -14,5 +26,13 @@ class Contact < ApplicationRecord
             root: true, methods: [:kind_description, :author], include: { kind: { only: :description }}
         )
     end
+
+    # def hello
+        #   I18n.t('hello')
+    # end
+
+     # def i18n
+     #   I18n.default_locale
+    # end
       
 end
